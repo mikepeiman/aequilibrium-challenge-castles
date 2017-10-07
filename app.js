@@ -19,33 +19,24 @@ runApp = function() {
 	console.log(terrain);
 	}
 	generateTerrain();
-		determinePeaks = function(terrain) {
+		determinePeaksAndValleys = function(terrain) {
 		for (i = 0; i < terrain.length; i++) {
 			var left = terrain[i];
 			var middle = terrain[i + 1];
 			var right = terrain[i + 2];
-			console.log("Peak sequence " + i + " = left: " + left + ", middle: " + middle + ", right: " + right);
+			console.log("Sequence " + i + " = left: " + left + ", middle: " + middle + ", right: " + right);
 		if (middle > left && middle > right) {
-			console.log("Peak sequence " + i + " is a PEAK");
+			console.log("Location " + i + " is a PEAK");
 			peaks += 1;
 		}
-		}
-		console.log("there are a total of " + peaks + " peaks in this tract of land.");
-	}
-		determineValleys = function(terrain) {
-		for (i = 0; i < terrain.length; i++) {
-			var left = terrain[i];
-			var middle = terrain[i + 1];
-			var right = terrain[i + 2];
-			console.log("Valley sequence " + i + " = left: " + left + ", middle: " + middle + ", right: " + right);
 		if (middle < left && middle < right) {
-			console.log("Valley sequence " + i + " is a VALLEY");
+			console.log("Location " + i + " is a VALLEY");
 			valleys += 1;
 		}
 		}
+		console.log("there are a total of " + peaks + " peaks in this tract of land.");
 		console.log("there are a total of " + valleys + " valleys in this tract of land.");
+		console.log("Your highness, we need to build " + (peaks + valleys) + " castles on this tract of land!");
 	}
-	determinePeaks(terrain);
-	determineValleys(terrain);
-
+	determinePeaksAndValleys(terrain);
 }

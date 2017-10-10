@@ -8,35 +8,43 @@ runApp = function() {
 	var terrain = [];
 	var peaks = 0;
 	var valleys = 0;
-	terrain.length = 20;
-	generateTerrain = function() {
 
+	generateTerrain = function() {
+		document.getElementById("terrainUnit").innerHTML = "";
+		document.getElementById("castlesRequired").innerHTML = "";
+		var terrain = [];
+		peaks = 0;
+		valleys = 0;
+		terrain.length = document.getElementById("terrainLength").value;
 		for (i = 0; i < terrain.length; i++) {
 			terrain[i] = Math.floor(Math.random() * 10);
-			console.log("Iteration #" + i + " terrain is " + terrain[i]);
-			document.getElementById("terrainUnit").innerHTML += "<li>" + terrain[i] + "</li>";
 		}
+		terrain.push(Math.floor(Math.random() * 10));
+
 	console.log(terrain);
+	determinePeaksAndValleys(terrain);
 	}
-	generateTerrain();
 		determinePeaksAndValleys = function(terrain) {
 		for (i = 0; i < terrain.length; i++) {
 			var left = terrain[i];
 			var middle = terrain[i + 1];
 			var right = terrain[i + 2];
-			console.log("Sequence " + i + " = left: " + left + ", middle: " + middle + ", right: " + right);
-		if (middle > left && middle > right) {
-			console.log("Location " + i + " is a PEAK");
-			peaks += 1;
+			
+			if (middle > left && middle > right) {
+				document.getElementById("terrainUnit").innerHTML += "<li><span class='item peaks'>" + terrain[i+1] + "</li>";
+				console.log("Location " + i + " is a PEAK");
+				peaks += 1;
+				document.get
+			} else if (middle < left && middle < right) {
+				document.getElementById("terrainUnit").innerHTML += "<li><span class='item valleys'>" + terrain[i+1] + "</li>";
+				console.log("Location " + i + " is a VALLEY");
+				valleys += 1;
+			} else {
+				document.getElementById("terrainUnit").innerHTML += "<li><span class='item default'>" + terrain[i+1] + "</li>";
+			}
 		}
-		if (middle < left && middle < right) {
-			console.log("Location " + i + " is a VALLEY");
-			valleys += 1;
-		}
-		}
-		console.log("there are a total of " + peaks + " peaks in this tract of land.");
-		console.log("there are a total of " + valleys + " valleys in this tract of land.");
-		console.log("Your highness, we need to build " + (peaks + valleys) + " castles on this tract of land!");
+		document.getElementById("castlesRequired").innerHTML += "<p class='peaks'>There are a total of " + peaks + " peaks in this tract of land.</p>";
+		document.getElementById("castlesRequired").innerHTML += "<p class='valleys'>There are a total of " + valleys + " valleys in this tract of land.</p>";
+		document.getElementById("castlesRequired").innerHTML += "Your highness, we need to build <b>" + (peaks + valleys) + " castles</b> on this tract of land!";
 	}
-	determinePeaksAndValleys(terrain);
 }

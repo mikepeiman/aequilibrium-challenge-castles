@@ -1,0 +1,18 @@
+.peaks {
+	background:  blue;
+	color:  white;
+}
+.valleys {
+	background:  green;
+	color:  white;
+}
+.default {
+	background:  grey;
+}
+span {
+	padding: 0 .25em;
+}
+p {
+	line-height:  1.25em;
+	margin:  .25em;
+}
